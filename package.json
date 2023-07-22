@@ -2,9 +2,10 @@
   "name": "@anthonyporthouse/parse-dice",
   "version": "0.0.0",
   "description": "",
-  "main": "src/parser.ts",
+  "main": "dist/parser.js",
   "type": "module",
   "scripts": {
+    "build": "tsc",
     "test": "vitest --coverage"
   },
   "author": "Anthony Porthouse <anthony@porthou.se>",
