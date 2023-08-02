@@ -1,13 +1,13 @@
 import { beforeAll, describe, expect, test } from "vitest";
-import { T_MathDesription } from "./math_description.js"
+import { T_ArithmaticOperator } from "./arithmatic_operator.js"
 
-describe(T_MathDesription, () => {
+describe(T_ArithmaticOperator, () => {
 
-    let token: T_MathDesription;
+    let token: T_ArithmaticOperator;
 
     describe('+', () => {
         beforeAll(() => {
-            token = new T_MathDesription('+');
+            token = new T_ArithmaticOperator('+');
         })
 
         test('getValue()', () =>{
@@ -16,7 +16,7 @@ describe(T_MathDesription, () => {
 
         test('toJSON()', () => {
             expect(JSON.stringify(token)).toBe(JSON.stringify({
-                type: 'MathDescription',
+                type: 'ArithmaticOperator',
                 value: '+'
             }));
         })
@@ -28,7 +28,7 @@ describe(T_MathDesription, () => {
 
     describe('-', () => {
         beforeAll(() => {
-            token = new T_MathDesription('-');
+            token = new T_ArithmaticOperator('-');
         })
 
         test('getValue()', () =>{
@@ -37,7 +37,7 @@ describe(T_MathDesription, () => {
 
         test('toJSON()', () => {
             expect(JSON.stringify(token)).toBe(JSON.stringify({
-                type: 'MathDescription',
+                type: 'ArithmaticOperator',
                 value: '-'
             }));
         })

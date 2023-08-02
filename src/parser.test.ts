@@ -2,42 +2,69 @@ import { Parser } from "./parser.js";
 import { describe, test, expect, beforeEach } from "vitest";
 import { T_Roll } from "./tokens/roll.js";
 import { T_LiteralValue } from "./tokens/literal_value.js";
-import { T_MathDesription } from "./tokens/math_description.js";
+import { T_ArithmaticOperator } from "./tokens/arithmatic_operator.js";
 
 describe(Parser.parse, () => {
-    test('@', async () => {
-        expect(() => Parser.parse(' @ ')).toThrowError("Unexpected character at position 2 '@'") ;
-    })
+  test("@", async () => {
+    expect(() => Parser.parse(" @ ")).toThrowError(
+      "Unexpected character at position 2 '@'"
+    );
+  });
 
-    test('4',async () => {
-        const result = Parser.parse('4');
-        expect(result).toMatchObject(new T_Roll([new T_LiteralValue(4)]))
-        expect(result.toString()).toBe('4')
-    })
+  test("4", async () => {
+    const result = Parser.parse("4");
+    expect(result).toMatchObject(new T_Roll([new T_LiteralValue(4)]));
+    expect(result.toString()).toBe("4");
+  });
 
-    test('4 + 2', async () => {
-        const roll = Parser.parse('4 + 2')
-        expect(roll).toMatchObject(new T_Roll([
-            new T_LiteralValue(4),
-            new T_MathDesription('+'),
-            new T_LiteralValue(2),
-        ]));
+  test("4 + 2", async () => {
+    const roll = Parser.parse("4 + 2");
+    expect(roll).toMatchObject(
+      new T_Roll([
+        new T_LiteralValue(4),
+        new T_ArithmaticOperator("+"),
+        new T_LiteralValue(2),
+      ])
+    );
 
-        expect(roll.toString()).toBe('4 + 2')
-    })
+    expect(roll.toString()).toBe("4 + 2");
+  });
 
-    test('4 - 2', async () => {
-        const roll = Parser.parse('4 - 2')
-        expect(roll).toMatchObject(new T_Roll([
-            new T_LiteralValue(4),
-            new T_MathDesription('-'),
-            new T_LiteralValue(2),
-        ]));
+  test("4 - 2", async () => {
+    const roll = Parser.parse("4 - 2");
+    expect(roll).toMatchObject(
+      new T_Roll([
+        new T_LiteralValue(4),
+        new T_ArithmaticOperator("-"),
+        new T_LiteralValue(2),
+      ])
+    );
 
-        expect(roll.toString()).toBe('4 - 2')
-    })
+    expect(roll.toString()).toBe("4 - 2");
+  });
 
-  test.skip("4d6 + 4", async() => {
+  test("2df", async () => {
+    expect(Parser.parse("2df")).toMatchObject({
+      type: "Roll",
+      values: [
+        {
+          type: "DiceDescription",
+          values: [
+            {
+              type: "RollTimes",
+              value: 2,
+            },
+            {
+              type: "FudgeDice",
+              value: "F",
+            },
+          ],
+        },
+      ],
+    });
+  });
+
+  test("4d6 + 4", async () => {
     expect(Parser.parse("4d6 + 4")).toMatchObject({
       type: "Roll",
       values: [
@@ -55,7 +82,7 @@ describe(Parser.parse, () => {
           ],
         },
         {
-          type: "MathDescription",
+          type: "ArithmaticOperator",
           value: "+",
         },
         {

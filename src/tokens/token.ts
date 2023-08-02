@@ -1,19 +1,20 @@
+
+type TokenSubtype = Token[] | Token | number | string | boolean
 export abstract class Token {
+  protected value;
 
-    protected value;
+  constructor(value: TokenSubtype) {
+    this.value = value;
+  }
 
-    constructor(value: number|string|Token[]) {
-        this.value = value;
-    }
+  abstract getValue(): TokenSubtype;
 
-    abstract getValue(): number|string|Token[];
+  setValue(value: TokenSubtype): this {
+    this.value = value;
+    return this;
+  }
 
-    setValue(value: number|string|Token[]): this {
-        this.value = value;
-        return this;
-    }
+  abstract toJSON(): object;
 
-    abstract toJSON(): object;
-
-    abstract toString(): string;
+  abstract toString(): string;
 }

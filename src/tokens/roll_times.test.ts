@@ -1,11 +1,11 @@
 import { beforeEach, describe, expect, test } from "vitest";
-import { T_LiteralValue } from "./literal_value.js";
+import { T_RollTimes } from "./roll_times.js";
 
-describe(T_LiteralValue, () => {
-    let token: T_LiteralValue;
+describe(T_RollTimes, () => {
+    let token: T_RollTimes;
 
     beforeEach(() => {
-        token = new T_LiteralValue(7);
+        token = new T_RollTimes(7);
     })
 
     test('getValue()', () =>{
@@ -19,7 +19,7 @@ describe(T_LiteralValue, () => {
 
     test('toJSON()', () => {
         expect(JSON.stringify(token)).toBe(JSON.stringify({
-            type: 'LiteralValue',
+            type: 'RollTimes',
             value: 7
         }));
     })

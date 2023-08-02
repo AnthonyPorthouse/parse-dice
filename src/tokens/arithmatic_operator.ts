@@ -1,21 +1,22 @@
-import { MathDescription } from "../ast.js";
 import { Token } from "./token.js";
 
-export class T_MathDesription extends Token {
+type T_ArithmaticOperatorSubType = '+' | '-'
+
+export class T_ArithmaticOperator extends Token {
     protected value;
 
-    constructor(value: MathDescription['value']) {
+    constructor(value: T_ArithmaticOperatorSubType) {
         super(value)
         this.value = value;
     }
 
-    getValue(): MathDescription['value'] {
+    getValue(): T_ArithmaticOperatorSubType {
         return this.value
     }
 
-    toJSON(): MathDescription {
+    toJSON() {
         return {
-            type: "MathDescription",
+            type: "ArithmaticOperator",
             value: this.getValue(),
         }
     }
