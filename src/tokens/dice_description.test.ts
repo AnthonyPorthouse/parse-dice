@@ -1,5 +1,4 @@
 import { beforeEach, describe, expect, test } from "vitest";
-import { T_LiteralValue } from "./literal_value.js";
 import { T_DiceDesription } from "./dice_description.js";
 import { T_RollTimes } from "./roll_times.js";
 
