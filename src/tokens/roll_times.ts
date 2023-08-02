@@ -1,22 +1,22 @@
 import { Token } from "./token.js";
 
-type T_LiteralValueSubType = number
+type T_RoleTimesSubType = number
 
-export class T_LiteralValue extends Token {
+export class T_RollTimes extends Token {
     protected value
 
-    constructor(value: T_LiteralValueSubType) {
+    constructor(value: T_RoleTimesSubType) {
         super(value)
         this.value = value;
     }
 
-    getValue(): T_LiteralValueSubType {
+    getValue(): T_RoleTimesSubType {
         return this.value
     }
 
     toJSON() {
         return {
-            type: "LiteralValue",
+            type: "RollTimes",
             value: this.getValue(),
         }
     }

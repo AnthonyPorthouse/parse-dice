@@ -24,7 +24,7 @@ When parsing a dice string we first need to break it down into its core componen
             ]
         },
         {
-            "type": "MathDescription",
+            "type": "ArithmaticOperator",
             "value": "+"
         },
         {

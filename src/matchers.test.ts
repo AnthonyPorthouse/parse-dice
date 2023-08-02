@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { containsDice, isDice, isFudgeDice, isMath, isNumber, isRegularDice, isWhitespace } from "./matchers.js";
+import { containsDice, isDice, isFudgeDice, isArithmaticOperator, isNumber, isRegularDice, isWhitespace } from "./matchers.js";
 import { Parser } from "./parser.js";
 
 describe(isNumber, async () => {
@@ -13,7 +13,7 @@ describe(isNumber, async () => {
     })
 })
 
-describe(isMath, () => {
+describe(isArithmaticOperator, () => {
     test.each([
         ['-'.charCodeAt(0), true],
         ['+'.charCodeAt(0), true],
@@ -22,7 +22,7 @@ describe(isMath, () => {
         ['+'.charCodeAt(0) - 1, false],
         ['+'.charCodeAt(0) + 1, false],
     ])('isMath(%i) -> %s', async (char: number, expected: boolean) => {
-        expect(isMath(char)).toBe(expected)
+        expect(isArithmaticOperator(char)).toBe(expected)
     })
 })
 

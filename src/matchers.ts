@@ -4,7 +4,7 @@ export function isNumber(char: number) {
     return char >= 48 && char <= 57;
 }
 
-export function isMath(char: number) {
+export function isArithmaticOperator(char: number) {
     return char === 43 || char === 45
 }
 
@@ -33,12 +33,12 @@ export function containsDice(parser: Parser) {
             return true;
         }
         offset += 1
-    } while (char && !isMath(char));
+    } while (char && !isArithmaticOperator(char));
     return false;
 }
 
 export default {
-    isMath,
+    isMath: isArithmaticOperator,
     isWhitespace,
     isDice,
     containsDice,
